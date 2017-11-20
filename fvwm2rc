@@ -1,0 +1,605 @@
+ImagePath $HOME/.fvwm:$HOME/.fvwm/icons:+:/usr/include/X11/bitmaps:+:/usr/include/X11/bitmaps:+:/usr/include/X11/pixmaps
+
+EdgeResistance 250 10
+EdgeScroll 100 100
+ClickTime 750
+EdgeThickness 4
+
+EwmhBaseStruts 0 0 22 0
+
+DeskTopSize 1x1
+
+WindowFont "xft:Helvetica:Medium:Roman:size=8:encoding=utf-8"
+Menustyle * fvwm, Font  "xft:Helvetica:Medium:Roman:size=8:encoding=utf-8"
+MenuStyle * Foreground white, Background #4992a7, Greyed grey40
+MenuStyle Mwm
+ColormapFocus FollowsMouse
+
+Emulate MWM
+
+Style * IconTitleRelief 1
+Style * IconBackgroundRelief 4
+Style * IconBackgroundPadding 2
+Style * IconBackgroundColorset 10
+#
+Style * ResizeHintOverride
+
+Style *           Font "xft:Helvetica:Medium:Roman:size=8:encoding=utf-8:antialias=False"
+Style *           IconFont "xft:Helvetica:Medium:Roman:size=8:encoding=utf-8:antialias=False"
+Style *           HilightFore black, HilightBack palevioletred
+Style *           BorderWidth 6, HandleWidth 6
+Style *           Icon unknown1.xpm, Color lightgrey/dimgrey
+Style *           MWMFunctions, MWMDecor, HintOverride
+Style *           DecorateTransient, !UsePPosition
+Style * IconSize 48x48
+Style * IconBox screen w 4 32 -130 700, IconGrid 74 14, mwmdecor, lenience, IconFill top left
+Style * SlipperyIcon, IconTitle
+
+Style *           SloppyFocus
+Style *           FPGrabFocus
+Style *		  MWMBorder
+
+Style "Fvwm*"       !Title,  Sticky, WindowListSkip
+Style "Fvwm*"       BorderWidth 2, CirculateSkipIcon, CirculateSkip
+Style "CDEPanel" Icon toolbox.xpm, ClickToFocus, BorderWidth 5, Borders, !Title, !Handles, 
+Style fvwm-run-dialog FPGrabFocus, FPReleaseFocus, !Title
+Style "*" HilightFore white, HilightBack #eda870
+Style "*" ForeColor white, BackColor #999999
+
+
+
+Colorset 10 fg #484048, bg #c6b2a8, Plain, NoShape
+Colorset 11 fg #484048, bg #999999, Plain, NoShape
+Colorset 12 fg #c6b2a8, bg #c6b2a8, Plain, NoShape
+Colorset 04 fg #ffffff, bg #8998aa, Plain, NoShape
+Colorset 05 fg #ffffff, bg #c6b2a8, Plain, NoShape
+Colorset 06 fg #ffffff, bg #4992a7, Plain, NoShape
+Colorset 07 fg #ffffff, bg #b7878d, Plain, NoShape
+
+
+Key Return		A       4       exec xterm -geometry 125x34 
+Key F12			A		N		exec /usr/X11R6/bin/xlock -nice -20
+Key b			A		4		exec /usr/bin/switch_big
+Key s			A		4		exec /usr/bin/switch_small
+Key f			A		4		exec /home/amihailov/bin/firefox
+Key k			A		4		exec /usr/local/bin/keepassx
+Key p			A		4		exec pidgin
+Key t			A		4		exec thunar
+
+Key exclam                      A       4       MoveToDesk      0       0
+Key at                          A       4       MoveToDesk      0       1
+Key numbersign          A       4       MoveToDesk      0       2
+Key dollar                      A       4       MoveToDesk      0       3
+#Key percent                     A       4       MoveToDesk      0       4
+#Key asciicircum         A       4       MoveToDesk      0       5
+#Key ampersand           A       4       MoveToDesk      0       6
+#Key asterisk            A       4       MoveToDesk      0       7
+#Key parenleft           A       4       MoveToDesk      0       8
+#Key parenright          A       4       MoveToDesk      0       9
+
+Key 1           A       4       GotoDesk                0       0
+Key 2           A       4       GotoDesk                0       1
+Key 3           A       4       GotoDesk                0       2
+Key 4           A       4       GotoDesk                0       3
+
+
+Key F12          A       4       Restart
+Key c            A      4S       Close
+Key Space        A       4       Maximize grow grow
+Key h            A       4       Maximize 0 100
+Key l            A       4       Maximize 100 0
+Key k            A       4       Next (CurrentDesk) Focus
+Key j            A       4       Prev (CurrentDesk) Focus
+Key r            A       4       Exec exec $[HOME]/.fvwm/run-dialog
+Key F            A       4S      Fullscreen
+
+Mouse 1	R   	A       Menu RootMenu Nop
+Mouse 2	R    	A      	Menu Window-Ops Nop
+Mouse 3	R    	A      	WindowList
+
+#   for the title bar buttons:
+Mouse 0	1    	A      	Menu Window-Ops2 Close
+Mouse 0	2    	A     	Maximize-Func
+Mouse 0	4    	A     	Iconify
+
+#   for other parts of the window/borders/icons:
+Mouse 1	F	A	Resize-or-Raise
+Mouse 1	TS	A	Move-or-Raise
+Mouse 1	I	A	Move-or-Iconify
+Mouse 2	I	A	Iconify
+Mouse 2	FST	A	Menu Window-Ops2 Nop
+Mouse 3	TSIF	A	RaiseLower
+
+AddToFunc StartFunction
+ + I Module FvwmButtons CDEPanel
+
+AddToFunc StartFunction
+ + I Module FvwmButtons TopPanel
+
+
+ AddToFunc InitFunction
+# + I exec xsetroot -mod 2 2 -bg "#264a6b" -fg "#524a8c"
+# old magenta color
+# + I exec xsetroot -mod 2 2 -fg rgb:55/40/55 -bg rgb:70/50/70
+# + I exec xsetroot -solid '#244953'
+ + I exec fvwm-root /home/amihailov/.fvwm/wallpaper/wallcde.xpm
+
+  # For some SM-s (like gnome-session) there is an internal background setter.
+  AddToFunc SessionInitFunction
+   + I Nop
+
+ AddToMenu RootMenu	"Root Menu"	Title
+   +			"XTerm"		Exec exec xterm
+   +			"Firefox"	Exec exec firefox
+   +			"Pidgin"	Exec exec pidgin 
+   +			"Thunar"	Exec exec thunar
+   +			""		Nop
+   +                       "Refresh Screen"   Refresh
+   +                       "Recapture Screen" Recapture
+   +			""		Nop
+   +			"Exit Fvwm"	Popup Quit-Verify
+
+   AddToMenu Quit-Verify 	"Really Quit Fvwm?" Title
+   +		      	"Yes, Really Quit"  Quit
+   +		      	""		    Nop
+   +                       "Restart Fvwm"      Restart
+   +		      	"Restart Fvwm 1.x"  Restart fvwm -s
+   +		      	""		    Nop
+   +		      	"Start twm"         Restart twm
+   +		      	"Start mwm"    	    Restart mwm
+   +		      	""		    Nop
+   +		      	"Start dummy"       Restart xterm
+   +		      	""		    Nop
+   +		      	"No, Don't Quit"    Nop
+
+
+
+   AddToMenu Misc-Ops "Misc Config Opts" Title
+   +                  "Sloppy Focus"        ChangeDefaultFocus SloppyFocus
+   +                  "Click To Focus"      ChangeDefaultFocus ClickToFocus
+   +                  "Focus Follows Mouse" ChangeDefaultFocus FocusFollowsMouse
+   +                  "" Nop
+   +                  "Colormap Follows Mouse" ColormapFocus FollowsMouse
+   +                  "Colormap Follows Focus" ColormapFocus FollowsFocus
+   +                  "" Nop
+   +                  "Full Paging ON"         EdgeScroll 100 100
+   +                  "All Paging OFF"         EdgeScroll 0 0
+   +                  "Horizontal Paging Only" EdgeScroll 100 0
+   +                  "Vertical Paging Only"   EdgeScroll 0 100
+   +                  "Partial Paging"         EdgeScroll 50 50
+   +                  "Full Paging && Edge Wrap" EdgeScroll 100000 100000
+
+   AddToMenu Window-Ops	"Window Ops"	Title
+   +			"Move"		Move
+   +			"Resize"	Resize
+   +			"Raise"		Raise
+   +			"Lower"		Lower
+   +		 	"(De)Iconify"	Iconify
+   +			"(Un)Stick"	Stick
+   +			"(Un)Maximize"	Maximize
+   +			""		Nop
+   +			"Delete"	Delete
+   +			"Close"		Close
+   +			"Destroy"	Destroy
+   +			""		Nop
+   +			"Refresh Window" RefreshWindow
+
+
+   AddToMenu Window-Ops2	"&Move"		Move
+   +			"&Resize"	Resize
+   +			"R&aise"	Raise
+   +			"&Lower"	Lower
+   +			"(De)&Iconify"	Iconify
+   +			"(Un)&Stick"	Stick
+   +                       "(Un)Ma&ximize" Maximize
+   +			""		Nop
+   +			"&Delete"	Delete
+   +			"&Close"	Close
+   +			"Destroy"	Destroy
+   +			""		Nop
+   +			"ScrollBar" 	Module FvwmScroll 2 2
+   +			"Print"         PrintFunction
+   +                       "Print Reverse" PrintReverseFunction
+
+   AddToFunc Move-or-Raise		I Raise
+   +				M Move
+   +  				D Lower
+
+   AddToFunc Move-or-Raise2	M Raise
+   +				M Move
+   +  				D Lower
+
+   AddToFunc Maximize-Func		M Maximize	 0 100
+   +				C Maximize	 0 80
+   +				D Maximize	 100 100
+
+   AddToFunc Move-or-Iconify	I Raise
+   +				M Move
+   +				D Iconify
+
+   AddToFunc Resize-or-Raise	I Raise
+   +				M Resize
+   +				D Lower
+
+   AddToFunc Resize-or-Raise2	M Raise
+   +				M Resize
+   +				D Lower
+
+   AddToFunc Iconify-and-Raise     I Iconify
+   +                               I Raise
+
+   AddToFunc FocusAndWarp I Focus
+   +                      I WarpToWindow 2p 2p
+
+   AddToFunc DeiconifyFocusAndWarp I Iconify -1
+   +                               I FocusAndWarp
+
+   AddToFunc ChangeDefaultFocus I Style * $0
+   +                            I Recapture
+
+DestroyFunc Fullscreen
+AddToFunc Fullscreen
++ I ThisWindow (Maximized) Fullscreen-Stop
++ I TestRc (False) ThisWindow (!Maximized) Fullscreen-Start
+
+DestroyFunc Fullscreen-Start
+AddToFunc Fullscreen-Start
++ I WindowStyle !Title, !Borders, !Iconifiable, ResizeHintOverride
++ I UpdateStyles
++ I Maximize ewmhiwa 100 100
++ I WindowStyle !Maximizable, FixedSize, FixedPosition
++ I UpdateStyles
+
+DestroyFunc Fullscreen-Stop
+AddToFunc Fullscreen-Stop
++ I DestroyWindowStyle
+++ I UpdateStyles
+++ I ThisWindow (Maximized) Maximize
+
+
+DestroyFunc FuncFvwmTerminal
+AddToFunc   FuncFvwmTerminal
++ I Exec exec xterm -geometry 125x34
+
+DestroyFunc FuncFvwmPidgin
+AddToFunc   FuncFvwmPidgin
++ I Exec exec pidgin
+
+
+DestroyModuleConfig FvwmButtons: *
+
+###### Панелька сверху ###########
+
+*TopPanel: Geometry 1920x20+0+0
+*TopPanel: Back #c6b2a8
+*TopPanel: (Frame 0 padding 0 container (Rows 0 Columns 40) Panel TopPanel)
+*TopPanel: (36x1, Frame 0 Swallow "FvwmIconMan" "Module FvwmIconMan")
+*TopPanel: (3x1,  Frame 0 Swallow (UseOld,Respawn,NoClose,NoKill) "stalonetray" "Exec exec stalonetray")
+*TopPanel: (1x1,  Frame 0 Swallow FvwmScript-Clock `FvwmScript scripts/FvwmScript-Clock 1`)
+
+*FvwmIconMan: numManagers 1
+*FvwmIconMan: Resolution  page
+*FvwmIconMan: MaxButtonWidth 240
+*FvwmIconMan: background  #c6b2a8
+*FvwmIconMan: foreground  #484048
+*FvwmIconMan: DrawIcons always
+*FvwmIconMan: ReliefThickness 2
+*FvwmIconMan: Format "%t"
+*FvwmIconMan: IconButton down
+*FvwmIconMan: IconAndSelectButton down
+*FvwmIconMan: SelectButton up
+*FvwmIconMan: font        "xft:Tahoma:Roman:size=8:encoding=utf-8"
+*FvwmIconMan: format      "%t"
+*FvwmIconMan: title      ""
+*FvwmIconMan: action      Mouse   1 N sendcommand Focus, sendcommand "Iconify"
+*FvwmIconMan: action      Mouse   2 N sendcommand "Iconify 1"
+*FvwmIconMan: action      Mouse   3 N sendcommand "FvwmIdent"
+*FvwmIconMan: followfocus true
+*FvwmIconMan: sort        name
+*FvwmIconMan: SelectButton down
+*FvwmIconMan: focusbutton  down 
+*FvwmIconMan: plainbutton          flat
+*FvwmIconMan: managergeometry 1x5
+
+######################################
+######################################
+
+##### Панелька снизу #################
+
+DestroyModuleConfig CDEPanel: *
+
+#PipeRead 'if [ -n "$FT_XINERAMA_PWIDTH" ]; then echo "*CDEPanel: Geometry 860x77+"`expr "(" $FT_XINERAMA_PWIDTH - 860 ")" / 2`"-0"; else echo "*CDEPanel: Geometry 860x77+"`expr "(" $[vp.width] - 860 ")" / 2`"-0";fi'
+*CDEPanel: Geometry 860x77+530-0
+*CDEPanel: Colorset 10
+*CDEPanel: Rows 9 
+*CDEPanel: Columns 43
+*CDEPanel: BoxSize fixed
+
+*CDEPanel: (15x9+14+0, Frame 1, Swallow "FvwmButton-CenterPanel" "Module FvwmButtons FvwmButton-CenterPanel")
+*CDEPanel: (1x2+13+0, Frame 1, Colorset 11)
+*CDEPanel: (1x2+29+0, Frame 1, Colorset 11)
+*CDEPanel: (1x2+0+0, Frame 1, Icon icons/panel-menu.xpm, \
+        Padding 0 0, Colorset 11, Action 'Next (CDEPanel, CirculateHit) Menu MenuFvwmWindowOps2 rectangle $widthx$height+$left+$top@g o+0 -100m')
+*CDEPanel: (1x7+0+2, Frame 1, Icon icons/panel-handle.xpm, \
+        Padding 0 0, Colorset 11, Action 'Next (CDEPanel, CirculateHit) Move')
+*CDEPanel: (1x2-0+0, Frame 1, Icon icons/panel-iconify.xpm, \
+        Padding 0 0, Colorset 11, Action 'Next (CDEPanel, CirculateHit) Iconify')
+*CDEPanel: (1x7-0+2, Frame 1, Icon icons/panel-handle.xpm, \
+        Padding 0 0, Colorset 11, Action 'Next (CDEPanel, CirculateHit) Move')
+*CDEPanel: (3x2+1+0, Frame 1, Colorset 11)
+*CDEPanel: (3x7+1+2, Frame 0, Padding 8 8, Swallow xclock `Exec xclock -padding 5 -geometry +5000+5000 -bg $$[bg.cs10] -fg $$[fg.cs10] -hd $$[shadow.cs13] -hl $$[hilight.cs13]`)
+*CDEPanel: (3x2+4+0, Frame 1, Colorset 11)
+*CDEPanel: (3x7+4+2, Frame 0, Padding 0 0, Colorset 12, Swallow FvwmApplet-CDEDayLarge `FvwmScript scripts/FvwmApplet-CDEDayLarge 10`)
+*CDEPanel: (3x2+7+0, Frame 1, Icon icons/panel-arrow.xpm, Padding 1 1, Colorset 11, Action 'Menu MenuFvwmShells rectangle $widthx$height+$left+$top@g o+50 -100m')
+*CDEPanel: (3x7+7+2, Frame 0, Icon icons/terminal.xpm, Padding 0 0, Action FuncFvwmTerminal, Action (Mouse 2) FuncFvwm2Terminal, Action (Mouse 3) FuncFvwm3Terminal)
+*CDEPanel: (3x2+10+0, Frame 1, Icon icons/panel-arrow.xpm, Padding 1 1, Colorset 11, Action 'Menu MenuFvwmPrograms rectangle $widthx$height+$left+$top@g o+50 -100m')
+*CDEPanel: (3x7+10+2, Frame 0, Icon icons/mozilla.xpm, Padding 0 0, Action FuncFvwmWWW, Action (Mouse 2) FuncFvwm2WWW, Action (Mouse 3) FuncFvwm3WWW)
+*CDEPanel: (3x2+30+0, Frame 1, Colorset 11)
+*CDEPanel: (3x7+30+2, Frame 0, Icon icons/icq.xpm, Padding 0 0, Action FuncFvwmPidgin)
+*CDEPanel: (3x2+33+0, Frame 1, Icon icons/panel-arrow.xpm, Padding 1 1, Colorset 11, Action 'Menu MenuFvwmSystem rectangle $widthx$height+$left+$top@g o+50 -100m')
+*CDEPanel: (3x7+33+2, Frame 0, Icon icons/folders.xpm, Padding 0 0, Action FuncFvwmFileManager, Action (Mouse 2) FuncFvwm2FileManager, Action (Mouse 3) FuncFvwm3FileManager)
+*CDEPanel: (3x2+36+0, Frame 1, Icon icons/panel-arrow.xpm, Padding 1 1, Colorset 11, Action 'Menu MenuFvwmHelp rectangle $widthx$height+$left+$top@g o+50 -100m')
+*CDEPanel: (3x7+36+2, Frame 0, Icon icons/help.xpm, Padding 0 0, Action Exec xman)
+*CDEPanel: (3x2+39+0, Frame 1, Colorset 11)
+*CDEPanel: (1x7+40+3,  Frame 0 Swallow (UseOld,Respawn,NoClose,NoKill) "xbatt" "Exec exec xbatt  -geometry +5000+5000")
+
+
+*FvwmButton-CenterPanel: Colorset 10
+*FvwmButton-CenterPanel: Rows 24
+*FvwmButton-CenterPanel: Columns 32
+*FvwmButton-CenterPanel: BoxSize fixed
+*FvwmButton-CenterPanel: (24x20+4+2, Frame 0, Swallow "FvwmButton-DesktopPanel" "Module FvwmButtons FvwmButton-DesktopPanel")
+*FvwmButton-CenterPanel: (4x12+0+0, Frame 0, Icon icons/panel-lock.xpm, Action FuncFvwmWmLock, Action (Mouse 2) FuncFvwm2WmLock, Action (Mouse 3) FuncFvwm3WmLock)
+*FvwmButton-CenterPanel: (4x12+0-0, Frame 0, Icon icons/panel-arrow.xpm, Action Module FvwmPager -transient FvwmPager-Desker 3 0)
+*FvwmButton-CenterPanel: (4x12-0+0, Frame 0, Icon icons/panel-lite.xpm, Action FuncFvwmWmRestart, Action (Mouse 2) FuncFvwm2WmRestart, Action (Mouse 3) FuncFvwm3WmRestart)
+*FvwmButton-CenterPanel: (4x12-0-0, Frame 0, Icon icons/panel-exit.xpm, Action 'Menu MenuFvwmQuit rectangle $widthx$height+$left+$top o+50 -100m')
+
+DestroyModuleConfig FvwmPager-Desker: *
+
+*FvwmPager-Desker: Colorset * 14
+*FvwmPager-Desker: HilightColorset * 15
+*FvwmPager-Desker: WindowColorsets 1 2
+*FvwmPager-Desker: BalloonColorset * 16 
+
+*FvwmPager-Desker: Columns 1
+*FvwmPager-Desker: Balloons            All
+*FvwmPager-Desker: BalloonYOffset      +2
+*FvwmPager-Desker: BalloonBorderWidth  1
+
+DestroyModuleConfig FvwmButton-DesktopPanel: *
+*FvwmButton-DesktopPanel: Colorset 10
+*FvwmButton-DesktopPanel: Rows 25
+*FvwmButton-DesktopPanel: Columns 75
+*FvwmButton-DesktopPanel: BoxSize fixed
+*FvwmButton-DesktopPanel: Font "Shadow=2:xft:Helvetica:Medium:Roman:size=8:encoding=utf-8:antialias=False"
+*FvwmButton-DesktopPanel: (36x11+0+0, Id desk0, Title (Left) " One", Action (Mouse 1) GotoDesk 0 0, Colorset 04, ActiveColorset 04, Frame 2)
+*FvwmButton-DesktopPanel: (36x11-0+0, Id desk1, Title (Left) " Two", Action (Mouse 1) GotoDesk 0 1, Colorset 05, ActiveColorset 05, Frame 2)
+*FvwmButton-DesktopPanel: (36x11+0-0, Id desk2, Title (Left) " Three", Action (Mouse 1) GotoDesk 0 2, Colorset 06, ActiveColorset 06, Frame 2)
+*FvwmButton-DesktopPanel: (36x11-0-0, Id desk3, Title (Left) " Four", Action (Mouse 1) GotoDesk 0 3, Colorset 07, ActiveColorset 07, Frame 2)
+
+
+
+
+AddToMenu MenuFvwmWindowMove "" Nop
++ "Desk 0%menu/window-move.xpm%"        MoveToDesk 0 0
++ "Desk 1%menu/window-move.xpm%"        MoveToDesk 0 1
++ "Desk 2%menu/window-move.xpm%"        MoveToDesk 0 2
++ "Desk 3%menu/window-move.xpm%"        MoveToDesk 0 3
+
+AddToMenu MenuFvwmWindowGroupQuickMove "" Nop
++ "Desk 0%menu/window-move.xpm%"        Pick All ($r) MoveToDesk 0 0
++ "Desk 1%menu/window-move.xpm%"        Pick All ($r) MoveToDesk 0 1
++ "Desk 2%menu/window-move.xpm%"        Pick All ($r) MoveToDesk 0 2
++ "Desk 3%menu/window-move.xpm%"        Pick All ($r) MoveToDesk 0 3
+
+
+
+# ---------- Shells
+
+DestroyMenu MenuFvwmShells
+AddToMenu   MenuFvwmShells "Shells" Title
++ "&Xterm       default%menu/terminal.xpm%" Exec exec xterm  -fg $[fg.cs30] -bg $[bg.cs30]
++ "Xterm/r&oot  default%menu/terminal-special.xpm%" Exec exec xterm  -fg $[fg.cs31] -bg $[bg.cs31] -e su -l
++ "&Dtterm      default%menu/terminal.xpm%" Exec exec /usr/dt/bin/dtterm -fg $[fg.cs30] -bg $[bg.cs30]
++ "" Nop
++ "&Xterm       80x40 (7x14 font)%menu/terminal.xpm%" Exec exec xterm  -n $USER@$HOST -T $USER@$HOST -g 80x40 -sb +sk +si -sl 4096 -j -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
++ "Xterm/r&oot  80x40 (7x14 font)%menu/terminal-special.xpm%" Exec exec xterm  -n root@$HOST  -T root@$HOST  -g 80x40 -sb +sk +si -sl 4096 -j -ls -fn 7x14 -fb 7x14bold -fg $[fg.cs31] -bg $[bg.cs31] -e su -l
++ "&Dtterm      80x40 (7x14 font)%menu/terminal.xpm%" Exec exec /usr/dt/bin/dtterm -n $USER@$HOST -T $USER@$HOST -sl 4096 -ls -g 80x40 -fn 7x14 -fb 7x14bold -fg $[fg.cs30] -bg $[bg.cs30]
++ "" Nop
++ "Remote login...%menu/terminal-remote.xpm%" FvwmForm FvwmForm-Rlogin
+
+
+DestroyMenu MenuFvwmPrograms
+AddToMenu   MenuFvwmPrograms "   Programs   " Title
++ "&CDE Menu%menu/unknown.xpm%"         Popup MenuFvwmCDE
++ "" Nop
++ "&Utilities%menu/utility.xpm%"        Popup MenuFvwmUtilities
++ "&Applications%menu/programs.xpm%"    Popup MenuFvwmApplications
++ "&Editors%menu/editor.xpm%"           Popup MenuFvwmEditors
++ "&Internet%menu/network.xpm%"         Popup MenuFvwmInternet
++ "&Graphics%menu/graphics.xpm%"        Popup MenuFvwmGraphics
++ "&Amusements%menu/amusement.xpm%"     Popup MenuFvwmAmusements
+
+DestroyMenu MenuFvwmCDE
+AddToMenu   MenuFvwmCDE
++ "&Terminal%menu/terminal.xpm%"        Exec exec /usr/dt/bin/dtterm
++ "&File Manager%menu/file-manager.xpm%" Exec exec /usr/dt/bin/dtfile
++ "Text &Editor%menu/editor.xpm%"       Exec exec /usr/dt/bin/dtpad
++ "Man Pages%menu/help.xpm%"            Exec exec /usr/dt/bin/dthelpview -man
++ "&Calculator%menu/calculator.xpm%"    Exec exec /usr/dt/bin/dtcalc
++ "" Nop
++ "&Exit CDE%menu/quit.xpm%" Exec exec /usr/dt/bin/dtaction ExitSession
+
+DestroyMenu MenuFvwmUtilities
+AddToMenu   MenuFvwmUtilities "Utilities" Title
++ "&Calculator%menu/calculator.xpm%"    Exec exec xcalc
++ "&Magnifying glass%menu/viewer.xpm%"  Exec exec xmag
++ "&XClock%menu/clock.xpm%"             Exec exec xclock
++ "XFontSel%menu/font.xpm%"             Exec exec xfontsel
++ "&Color List%menu/colors.xpm%"        FuncFvwmViewFile /usr/X11R6/lib/X11/rgb.txt
++ "&Xclipboard%menu/unknown.xpm%"       Exec exec xclipboard
++ "&XRus%menu/keyboard.xpm%"            Exec exec xrus
+
+DestroyMenu MenuFvwmApplications
+AddToMenu   MenuFvwmApplications "Applications" Title
++ "&GhostView%menu/ghostview.xpm%"      Exec exec ghostview
++ "X&pdf%menu/viewer.xpm%"              Exec exec xpdf
++ "X&dvi%menu/viewer.xpm%"              Exec exec xdvi
+
+DestroyMenu MenuFvwmEditors
+AddToMenu   MenuFvwmEditors "Editors" Title
++ "VI%menu/editor.xpm%"                 FuncFvwmRunInXterm "VI" "vi"
++ "xedit%menu/editor.xpm%"              Exec exec xedit
+
+DestroyMenu MenuFvwmInternet
+AddToMenu   MenuFvwmInternet "Internet" Title
++ "&Firefox%menu/chat.xpm%"               Exec exec firefox
++ "&Pidgin%menu/chat.xpm%"               Exec exec pidgin
+
+DestroyMenu MenuFvwmGraphics
+AddToMenu   MenuFvwmGraphics "Graphics" Title
++ "XV%menu/xv.xpm%"                             Exec exec xv
++ "Gimp%menu/gimp.xpm%"                         Exec exec gimp
++ "ImageMagick%menu/image-processor.xpm%"       Exec exec display
++ "Xfig%menu/image-processor.xpm%"              Exec exec xfig
+
+
+DestroyMenu MenuFvwmQuit
+AddToMenu   MenuFvwmQuit "Really Quit FVWM?" Title
++ "&Restart%menu/restart.xpm%"          Restart
++ "&Restart Other%menu/restart.xpm%"    Popup MenuFvwmWindowManager
++ "" Nop
++ "Re&fresh Screen%menu/refresh.xpm%"   Refresh
++ "Re&capture Screen%menu/refresh.xpm%" Recapture
++ "" Nop
++ "&Yes, Really Quit%menu/choice-yes.xpm%" Quit
++ "&No, Don't Quit%menu/choice-no.xpm%"    Nop
+
+
+DestroyMenu MenuFvwmWindowManager
+AddToMenu   MenuFvwmWindowManager "Window Managers" Title
++ "&fvwm%menu/windows.xpm%"                     Restart fvwm -s
++ "&twm%menu/windows.xpm%"                      Restart twm
++ "" Nop
++ "Just &xterm%menu/terminal.xpm%"              Restart xterm
++ "More&...%menu/windows.xpm%"                  FvwmForm FvwmForm-Restart
+
+
+DestroyFunc FuncFvwmWmLock
+AddToFunc   FuncFvwmWmLock
++ I Exec xlock -nice 20 -mode random
+
+DestroyFunc FuncFvwm2WmLock
+AddToFunc   FuncFvwm2WmLock
++ I Exec xlock -nolock -nice 20 -mode random
+
+DestroyFunc FuncFvwm3WmLock
+AddToFunc   FuncFvwm3WmLock
++ I Nop
+
+
+DestroyMenu MenuFvwmSystem
+AddToMenu   MenuFvwmSystem "System" Title
++ "&Top%menu/monitoring.xpm%"           FuncFvwmRunInXterm "Top" top
++ "X&Load%menu/monitoring.xpm%"         Exec exec xload
++ "&xconsole%menu/terminal.xpm%"        Exec exec xconsole
++ "&Gkrellm%menu/monitoring.xpm%"       Exec exec gkrellm 
++ "" Nop
++ "&Midnight-Commander%menu/file-manager.xpm%" FuncFvwmRunInXterm "Midnight-Commander" "mc -x"
++ "Thunar%menu/file-manager.xpm%"     Exec exec thunar
++ "Dtfile%menu/file-manager.xpm%"       Exec exec /usr/dt/bin/dtfile 
++ "" Nop
++ MissingSubmenuFunction FuncFvwmMenuDirectory
+
+DestroyFunc FuncFvwmRunInXterm
+AddToFunc   FuncFvwmRunInXterm
++ I exec xterm -fg $[fg.cs34] -bg $[bg.cs34] -g 80x40  +sb -ut -T "$0" -n "$0" -e $1
+
+DestroyMenu MenuFvwmHelp
+AddToMenu   MenuFvwmHelp "Help" Title
++ "%menu/help.xpm%FVWM Man Pages"               Popup MenuFvwmManPages
++ "%menu/information.xpm%Show FVWM Version"     FuncFvwmShowVersionInfo
++ "" Nop
++ "%menu/help.xpm%Xman"                 Exec exec xman
++ "%menu/help.xpm%GNOME Help Browser"   Exec exec gnome-help-browser
++ "%menu/help.xpm%KDE Help"             Exec exec kdehelp
++ "%menu/help.xpm%KDE Help Center"      Exec exec khelpcenter
+
+DestroyFunc FuncFvwmViewManPage
+AddToFunc   FuncFvwmViewManPage
++ I Exec exec xterm -fg $[fg.cs33] -bg $[bg.cs33] -g 80x40 -fn 7x14 -fb 7x14bold -n "Manual Page - $0" -T "Manual Page - $0" -e man "$0"
+
+
+DestroyMenu MenuFvwmManPages
+AddToMenu   MenuFvwmManPages "FVWM Man Pages" Title
++ "%menu/help.xpm%fvwm"                FuncFvwmViewManPage fvwm
++ "%menu/help.xpm%FvwmAnimate"         FuncFvwmViewManPage FvwmAnimate
++ "%menu/help.xpm%FvwmAuto"            FuncFvwmViewManPage FvwmAuto
++ "%menu/help.xpm%FvwmBacker"          FuncFvwmViewManPage FvwmBacker
++ "%menu/help.xpm%FvwmBanner"          FuncFvwmViewManPage FvwmBanner
++ "%menu/help.xpm%FvwmButtons"         FuncFvwmViewManPage FvwmButtons
++ "%menu/help.xpm%FvwmCommand"         FuncFvwmViewManPage FvwmCommand
++ "%menu/help.xpm%FvwmConsole"         FuncFvwmViewManPage FvwmConsole
++ "%menu/help.xpm%FvwmConsoleC.pl"     FuncFvwmViewManPage FvwmConsoleC.pl
++ "%menu/help.xpm%FvwmCpp"             FuncFvwmViewManPage FvwmCpp
++ "%menu/help.xpm%FvwmDebug"           FuncFvwmViewManPage FvwmDebug
++ "%menu/help.xpm%FvwmDragWell"        FuncFvwmViewManPage FvwmDragWell
++ "%menu/help.xpm%FvwmEvent"           FuncFvwmViewManPage FvwmEvent
++ "%menu/help.xpm%FvwmForm"            FuncFvwmViewManPage FvwmForm
++ "%menu/help.xpm%FvwmGtk"             FuncFvwmViewManPage FvwmGtk
++ "%menu/help.xpm%FvwmGtkDebug"        FuncFvwmViewManPage FvwmGtkDebug
++ "%menu/help.xpm%FvwmIconBox"         FuncFvwmViewManPage FvwmIconBox
++ "%menu/help.xpm%FvwmIconMan"         FuncFvwmViewManPage FvwmIconMan
++ "%menu/help.xpm%FvwmIdent"           FuncFvwmViewManPage FvwmIdent
++ "%menu/help.xpm%FvwmM4"              FuncFvwmViewManPage FvwmM4
++ "%menu/help.xpm%FvwmPager"           FuncFvwmViewManPage FvwmPager
++ "%menu/help.xpm%FvwmPerl"            FuncFvwmViewManPage FvwmPerl
++ "%menu/help.xpm%FvwmProxy"           FuncFvwmViewManPage FvwmProxy
++ "%menu/help.xpm%FvwmRearrange"       FuncFvwmViewManPage FvwmRearrange
++ "%menu/help.xpm%FvwmSave"            FuncFvwmViewManPage FvwmSave
++ "%menu/help.xpm%FvwmSaveDesk"        FuncFvwmViewManPage FvwmSaveDesk
++ "%menu/help.xpm%FvwmScript"          FuncFvwmViewManPage FvwmScript
++ "%menu/help.xpm%FvwmScroll"          FuncFvwmViewManPage FvwmScroll
++ "%menu/help.xpm%FvwmTaskBar"         FuncFvwmViewManPage FvwmTaskBar
++ "%menu/help.xpm%FvwmTheme"           FuncFvwmViewManPage FvwmTheme
++ "%menu/help.xpm%FvwmWharf"           FuncFvwmViewManPage FvwmWharf
++ "%menu/help.xpm%FvwmWinList"         FuncFvwmViewManPage FvwmWinList
++ "%menu/help.xpm%FvwmWindowMenu"      FuncFvwmViewManPage FvwmWindowMenu
++ "" Nop
++ "%menu/help.xpm%fvwm-config"         FuncFvwmViewManPage fvwm-config
++ "%menu/help.xpm%fvwm-perllib"        FuncFvwmViewManPage fvwm-perllib
++ "%menu/help.xpm%fvwm-root"           FuncFvwmViewManPage fvwm-root
++ "%menu/help.xpm%fvwm-bug"            FuncFvwmViewManPage fvwm-bug
++ "%menu/help.xpm%fvwm-convert-2.2"    FuncFvwmViewManPage fvwm-convert-2.2
++ "%menu/help.xpm%fvwm-convert-2.4"    FuncFvwmViewManPage fvwm-convert-2.4
++ "" Nop
++ "%menu/help.xpm%fvwm-menu-desktop"   FuncFvwmViewManPage fvwm-menu-desktop
++ "%menu/help.xpm%fvwm-menu-directory" FuncFvwmViewManPage fvwm-menu-directory
++ "%menu/help.xpm%fvwm-menu-headlines" FuncFvwmViewManPage fvwm-menu-headlines
++ "%menu/help.xpm%fvwm-menu-xlock"     FuncFvwmViewManPage fvwm-menu-xlock
+
+DestroyFunc FuncFvwmWWW
+AddToFunc   FuncFvwmWWW
++ I Exec firefox -remote 'openURL(about:, new-window)' 2>/dev/null || firefox
+
+DestroyFunc FuncFvwm2WWW
+AddToFunc   FuncFvwm2WWW
++ I Exec exec gppp
+
+DestroyFunc FuncFvwm3WWW
+AddToFunc   FuncFvwm3WWW
++ I Exec exec kppp
+
+# Used in aftersep, migo, olicha, redmond98
+DestroyFunc FuncFvwmFileManager
+AddToFunc   FuncFvwmFileManager
++ I Exec exec thunar 
+
+DestroyFunc FuncFvwm2FileManager
+AddToFunc   FuncFvwm2FileManager
++ I Exec exec xterm -g 80x40 -sb +sk -si -sl 500 -j -ls -fn 7x14 -fb 7x14bold -n Midnight-Commander -T Midnight-Commander -e mc -x
+
+DestroyFunc FuncFvwm3FileManager
+AddToFunc   FuncFvwm3FileManager
++ I Exec exec kfmclient openURL $HOME
+
