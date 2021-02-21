@@ -1,14 +1,18 @@
 WindowTitle {FvwmApplet-CDEDayLarge}
 WindowSize  54 54		# Taille
-Font		6x10
+Font		6x8
+#Font		6x10
 
 Init
 Begin
  ChangeColorset 0 10
  ChangeColorset 2 10
- Set $day  = (GetOutput {exec date} $pos 1)
- Set $month =  (GetOutput {exec date} $pos 2)
- ChangeTitle  4 (GetOutput {exec date} $pos 3)
+# Set $day  = (GetOutput {exec date} $pos 1)
+# Set $month =  (GetOutput {exec date} $pos 2)
+# ChangeTitle  4 (GetOutput {exec date} $pos 3)
+ Set $day  = (GetOutput {exec /home/amihailov/bin/date.sh} $pos 1)
+ Set $month =  (GetOutput {exec /home/amihailov/bin/date.sh} $pos 2)
+ ChangeTitle  4 (GetOutput {exec /home/amihailov/bin/date.sh} $pos 3)
  ChangeTitle  3 $day
  ChangeTitle  5 $month
 End
@@ -17,9 +21,9 @@ PeriodicTasks
  Begin
  If (RemainderOfDiv (GetTime) 30)==0 Then
  Begin
-  Set $day  = (GetOutput {exec date} $pos 1)
-  Set $month =  (GetOutput {exec date} $pos 2)
-  ChangeTitle  4 (GetOutput {exec date} $pos 3)
+  Set $day  = (GetOutput {exec /home/amihailov/bin/date.sh} $pos 1)
+  Set $month =  (GetOutput {exec /home/amihailov/bin/date.sh} $pos 2)
+  ChangeTitle  4 (GetOutput {exec /home/amihailov/bin/date.sh} $pos 3)
   ChangeTitle  3 $day
   ChangeTitle  5 $month
  End
@@ -77,7 +81,7 @@ End
 
 Widget 4
 Property
- Position 21 19
+ Position 23 19
  Size 0 0
  Font 6x13
  Type ItemDraw
