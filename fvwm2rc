@@ -344,7 +344,7 @@ ChangeMenuStyle MenuPanel MenuFvwmShells
 DestroyMenu MenuFvwmWww
 AddToMenu   MenuFvwmWww "Webbrowser" Title
 ChangeMenuStyle MenuPanel MenuFvwmWww
-+ "&Tor browser%icons/edge.xpm%"            FuncFvwmEdge
++ "&Microsoft Edge%icons/edge.xpm%"         FuncFvwmEdge
 + "&Chromium%icons/chrome.xpm%"             FuncFvwmChromium
 + "&Tor browser%icons/netscape.xpm%"        FuncFvwmTorbrowser
 + "&Seamonkey%icons/seamonkey.xpm%"         FuncFvwmSeamonkey
