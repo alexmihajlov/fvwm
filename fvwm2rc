@@ -231,6 +231,10 @@ DestroyFunc FuncFvwmChromium
 AddToFunc   FuncFvwmChromium
 + I Exec    chromium
 
+DestroyFunc FuncFvwmEdge
+AddToFunc   FuncFvwmEdge
++ I Exec    microsoft-edge
+
 DestroyFunc FuncFvwmSeamonkey
 AddToFunc   FuncFvwmSeamonkey
 + I Exec    seamonkey
@@ -340,8 +344,9 @@ ChangeMenuStyle MenuPanel MenuFvwmShells
 DestroyMenu MenuFvwmWww
 AddToMenu   MenuFvwmWww "Webbrowser" Title
 ChangeMenuStyle MenuPanel MenuFvwmWww
-+ "&Tor browser%icons/netscape.xpm%"        FuncFvwmTorbrowser
++ "&Tor browser%icons/edge.xpm%"            FuncFvwmEdge
 + "&Chromium%icons/chrome.xpm%"             FuncFvwmChromium
++ "&Tor browser%icons/netscape.xpm%"        FuncFvwmTorbrowser
 + "&Seamonkey%icons/seamonkey.xpm%"         FuncFvwmSeamonkey
 
 DestroyMenu MenuFvwmMessager

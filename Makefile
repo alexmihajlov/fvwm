@@ -1,4 +1,4 @@
-FVWMDIR=	/home/amihailov/.fvwm
+FVWMDIR=	${HOME}/.fvwm
 
 all:    update
 
