@@ -189,15 +189,15 @@ AddToFunc   FuncFvwmXterm
 DestroyFunc FuncFvwmTerminal
 AddToFunc   FuncFvwmTerminal
 #+ I Exec exec xterm -geometry 125x34
-+ I Exec    xfce4-terminal
++ I Exec    xterm
 
 DestroyFunc FuncFvwmTelegram
 AddToFunc   FuncFvwmTelegram
-+ I Exec    ${HOME}/bin/Telegram/Telegram
++ I Exec    telegram-desktop
 
 DestroyFunc FuncFvwmWmLock
 AddToFunc   FuncFvwmWmLock
-+ I Exec    slock
++ I Exec    xlock -mode blank -bg black -fg white
 
 DestroyFunc FuncFvwmMail
 AddToFunc   FuncFvwmMail
@@ -205,7 +205,7 @@ AddToFunc   FuncFvwmMail
 
 DestroyFunc FuncFvwmWWW
 AddToFunc   FuncFvwmWWW
-+ I Exec    ${HOME}/bin/firefox/firefox
++ I Exec    firefox
 
 DestroyFunc FuncFvwmFileManager
 AddToFunc   FuncFvwmFileManager
@@ -229,7 +229,7 @@ AddToFunc   FuncFvwmtorbrowser
 
 DestroyFunc FuncFvwmChromium
 AddToFunc   FuncFvwmChromium
-+ I Exec    chromium
++ I Exec    chrome
 
 DestroyFunc FuncFvwmEdge
 AddToFunc   FuncFvwmEdge
@@ -344,17 +344,17 @@ ChangeMenuStyle MenuPanel MenuFvwmShells
 DestroyMenu MenuFvwmWww
 AddToMenu   MenuFvwmWww "Webbrowser" Title
 ChangeMenuStyle MenuPanel MenuFvwmWww
-+ "&Microsoft Edge%icons/edge.xpm%"         FuncFvwmEdge
+#+ "&Microsoft Edge%icons/edge.xpm%"         FuncFvwmEdge
 + "&Chromium%icons/chrome.xpm%"             FuncFvwmChromium
-+ "&Tor browser%icons/netscape.xpm%"        FuncFvwmTorbrowser
-+ "&Seamonkey%icons/seamonkey.xpm%"         FuncFvwmSeamonkey
+#+ "&Tor browser%icons/netscape.xpm%"        FuncFvwmTorbrowser
+#+ "&Seamonkey%icons/seamonkey.xpm%"         FuncFvwmSeamonkey
 
 DestroyMenu MenuFvwmMessager
 AddToMenu   MenuFvwmMessager "Boten" Title
 ChangeMenuStyle MenuPanel MenuFvwmMessager
-+ "&Zoom%icons/zoom.xpm%"                   FuncFvwmZoom
-+ "&Skype%icons/skype.xpm%"                 FuncFvwmSkype
-+ "&Slack%icons/slack.xpm%"                 FuncFvwmSlack
+#+ "&Zoom%icons/zoom.xpm%"                   FuncFvwmZoom
+#+ "&Skype%icons/skype.xpm%"                 FuncFvwmSkype
+#+ "&Slack%icons/slack.xpm%"                 FuncFvwmSlack
 
 DestroyMenu MenuFvwmUtils
 AddToMenu   MenuFvwmUtils "Dienstprogramme" Title
@@ -362,7 +362,7 @@ ChangeMenuStyle MenuPanel MenuFvwmUtils
 + "Taschenrechner%icons/accessories-calculator.xpm%" FuncFvwmCalc
 + "" Nop
 + "&Remmina%icons/vnc.xpm%"                 FuncFvwmRdp
-+ "&AnyConnect%icons/cisco.xpm%"            FuncFvwmCiscoConnect
+#+ "&AnyConnect%icons/cisco.xpm%"            FuncFvwmCiscoConnect
 + "&Virt-manager%icons/web2.xpm%"           FuncFvwmVirtManager
 + "&Keepassxc%icons/keepassx.xpm%"          FuncFvwmKeepassx
 
@@ -378,7 +378,7 @@ ChangeMenuStyle MenuPanel MenuFvwmEditors
 + "LibreOffce Writer%icons/libreoffice-writer.xpm%"    Exec exec soffice --writer
 + "LibreOffce%icons/libreoffice-startcenter.xpm%"      Exec exec soffice
 + "" Nop
-+ "Geany%icons/editor.xpm%"                 FuncFvwmGeany
+#+ "Geany%icons/editor.xpm%"                 FuncFvwmGeany
 
 DestroyMenu MenuFvwmMultimedia
 AddToMenu   MenuFvwmMultimedia "Multimedia" Title
@@ -504,7 +504,8 @@ PipeRead 'if [ -n "$FT_XINERAMA_PWIDTH" ]; then echo "*CDEPanel: Geometry 1150x7
 *CDEPanel: (25x9+17+0, Frame 1, Swallow "FvwmButton-CenterPanel" "Module FvwmButtons FvwmButton-CenterPanel")
 *CDEPanel: (1x2+42+0, Frame 1, Colorset 11)
 #*CDEPanel: (3x2+33+0, Frame 1, Colorset 11)
-*CDEPanel: (3x2+43+0, Frame 1, Icon icons/panel-arrow.xpm, Padding 1 1, Colorset 11, PressColorset 11, Action 'Menu MenuFvwmMessager rectangle $widthx$height+$left+$top@g o+0 -100m')
+#*CDEPanel: (3x2+43+0, Frame 1, Icon icons/panel-arrow.xpm, Padding 1 1, Colorset 11, PressColorset 11, Action 'Menu MenuFvwmMessager rectangle $widthx$height+$left+$top@g o+0 -100m')
+*CDEPanel: (3x2+43+0, Frame 1, Colorset 11)
 *CDEPanel: (3x7+43+2, Frame 0, Icon icons/telegram.xpm, Padding 0 0, Action FuncFvwmTelegram)
 *CDEPanel: (3x2+46+0, Frame 1, Icon icons/panel-arrow.xpm, Padding 1 1, Colorset 11, PressColorset 11, Action 'Menu MenuFvwmUtils rectangle $widthx$height+$left+$top@g o+0 -100m')
 *CDEPanel: (3x7+46+2, Frame 0, Icon icons/folders.xpm, Padding 0 0, Action FuncFvwmFileManager, Action (Mouse 2) FuncFvwm2FileManager)
