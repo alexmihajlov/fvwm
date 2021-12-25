@@ -10,5 +10,5 @@ update:
 	cp -r wallpaper/* ${FVWMDIR}/wallpaper/;
 	cp -r scripts/* ${FVWMDIR}/scripts/;
 	cp -f pclock-0.13.1/pclock-bin.FreeBSD_amd64 ${FVWMDIR}/scripts/pclock;
-	/usr/bin/pkill -SIGUSR1 fvwm
+	/usr/bin/killall -SIGUSR1 fvwm
 
